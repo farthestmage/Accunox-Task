@@ -1,8 +1,9 @@
-##Q-1 By default are django signals executed synchronously or asynchronously?
+# Q-1 By default are django signals executed synchronously or asynchronously?
 
 Django Signals are Synchronous - means that the process runs in a single thread, block the main code untill the signal has been executed
 
-```bash  Signals.py 
+```bash  
+Signals.py 
 @receiver(post_save, sender=Question)
 def slow_signal(sender,instance,**kwargs):
     print("[Signal] Started slow signal...")
