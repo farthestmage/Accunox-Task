@@ -35,3 +35,4 @@ print(f"[Signal] Fired for Question_id:{instance.id}")
 
 ```
 we raise an exception to rollback the trigger 
+To stop that transaction 
