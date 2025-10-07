@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.db.models import F
 from django.views import generic
-
+import threading
 
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
@@ -26,7 +26,7 @@ class ResultsView(generic.DetailView):
     template_name = "polls/results.html"
 
 def test_signal(request):
-    print("[View] Creating question...")
+    print(f"[View] Creating question...  thread_id: {threading.get_ident()}")
     Question.objects.create(question_text="Is it synchronous?",pub_date=timezone.now())
     print("[View] Question created — returning response now!")
     return HttpResponse("Done creating question.")

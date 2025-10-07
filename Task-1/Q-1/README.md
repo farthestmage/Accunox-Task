@@ -1,4 +1,5 @@
-# Q-1 By default are django signals executed synchronously or asynchronously?
+# Topic Django Signals
+## Q-1 By default are django signals executed synchronously or asynchronously?
 
 Django Signals are Synchronous - means that the process runs in a single thread, block the main code untill the signal has been executed
 
@@ -20,3 +21,5 @@ it should have printed
     print("[View] Question created — returning response now!")
 ```
 but instead it waited and executed it after that function was executed 
+## Do django signals run in the same thread as the caller?
+As they run Synchronously we can tell even by calling the signals we se it runs in a single thread by checking the thread_id
