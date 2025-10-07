@@ -40,7 +40,7 @@ def test_signal2(request):
             raise Exception("Trigger rollback")
     except Exception:
         pass
-    print("Count: ",Question.objects.count())
+    print("[View] Count: ",Question.objects.count())
     return HttpResponse("Done")
 
 def vote(request, question_id):
