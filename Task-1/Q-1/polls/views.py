@@ -4,6 +4,7 @@ from .models import Question,Choice
 from django.utils import timezone
 from django.urls import reverse
 from django.db.models import F
+from django.db import transaction
 from django.views import generic
 import threading
 
@@ -31,6 +32,16 @@ def test_signal(request):
     print("[View] Question created — returning response now!")
     return HttpResponse("Done creating question.")
 
+def test_signal2(request):
+    try:
+        with transaction.atomic():
+            q= Question.objects.create(question_text="Wrong question",pub_date=timezone.now())
+            print("[View] Question created, id:", q.id)
+            raise Exception("Trigger rollback")
+    except Exception:
+        pass
+    print("Count: ",Question.objects.count())
+    return HttpResponse("Done")
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
